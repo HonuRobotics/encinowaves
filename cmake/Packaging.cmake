@@ -10,9 +10,13 @@
 #
 # Build the packages with (umask 022 keeps directory perms at 0755):
 #   umask 022
-#   cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+#   cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr \
+#         -DEHUKAI_ENABLE_DEB_PACKAGING=ON
 #   cmake --build build -j"$(nproc)"
 #   ( cd build && cpack -G DEB )
+#
+# EHUKAI_ENABLE_DEB_PACKAGING is required: this file is not included otherwise,
+# because the files it installs are meaningful only inside these .debs.
 #
 # CMAKE_INSTALL_PREFIX=/usr is required, not optional. GNUInstallDirs only
 # expands CMAKE_INSTALL_LIBDIR to the Debian multiarch path 
@@ -142,6 +146,12 @@ endif()
 install(FILES "${_changelog_gz}"
   DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/libehukai0    COMPONENT runtime)
 install(FILES "${_changelog_gz}"
+  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/libehukai-dev COMPONENT dev)
+
+# ---- machine-readable copyright (lintian requires one per binary package) ----
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/cmake/deb/copyright"
+  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/libehukai0    COMPONENT runtime)
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/cmake/deb/copyright"
   DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/libehukai-dev COMPONENT dev)
 
 # ---- lintian overrides for documented, internal-only acceptable tags ----

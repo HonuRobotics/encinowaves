@@ -121,14 +121,6 @@ install(FILES
   DESTINATION ${_cfgdir}
   COMPONENT dev)
 
-# Each binary package needs its own machine-readable copyright (lintian).
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cmake/deb/copyright
-  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/libehukai0
-  COMPONENT runtime)
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cmake/deb/copyright
-  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/libehukai-dev
-  COMPONENT dev)
-
 # ---- headless smoke tests (drivers exit non-zero on failure) ----
 if(BUILD_TESTING)
   foreach(t test_DirectionalSpreading test_FftwWrapper test_headers
@@ -149,9 +141,19 @@ if(EHUKAI_BUILD_BENCHMARKS)
     PRIVATE ${PROJECT_NAME} benchmark::benchmark)
 endif()
 
-# ---- Debian (.deb) packaging via CPack (top-level builds only) ----
-# Guarded so add_subdirectory() consumers don't inherit our CPack config.
-# (PROJECT_IS_TOP_LEVEL would be cleaner but needs CMake 3.21; floor here is 3.16.)
-if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+# ---- Debian (.deb) packaging via CPack ----
+# Opt-in, because the packaging installs files that only make sense inside the
+# .debs it builds: a copyright and changelog under share/doc/libehukai0 and
+# share/doc/libehukai-dev, and lintian overrides named after those packages.
+# Any other install carries them too, which is wrong everywhere else -- a ROS
+# buildfarm build of this package deposits all six under /opt/ros/<distro>,
+# naming Debian packages that do not exist there, and a conda build does the
+# same under $PREFIX. Only the pipeline that runs `cpack -G DEB` wants them, so
+# only that pipeline asks for them; see .github/workflows/release.yml.
+option(EHUKAI_ENABLE_DEB_PACKAGING
+       "Configure CPack to build the libehukai0 / libehukai-dev .deb packages" OFF)
+# Also guarded on being top level so add_subdirectory() consumers cannot inherit
+# our CPack config. (PROJECT_IS_TOP_LEVEL would be cleaner but needs CMake 3.21.)
+if(EHUKAI_ENABLE_DEB_PACKAGING AND CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
   include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Packaging.cmake)
 endif()

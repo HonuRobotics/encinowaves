@@ -29,7 +29,8 @@ jobs:
       - name: Build and package
         run: |
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr \
-                -DBUILD_TESTING=OFF -DEHUKAI_DEB_DISTRO_SUFFIX="${{ matrix.suffix }}" \
+                -DBUILD_TESTING=OFF -DEHUKAI_ENABLE_DEB_PACKAGING=ON \
+                -DEHUKAI_DEB_DISTRO_SUFFIX="${{ matrix.suffix }}" \
                 -DEHUKAI_DEB_DISTRO_CODENAME="${{ matrix.codename }}"
           cmake --build build --target ehukai -j"$(nproc)"
           ( cd build && cpack -G DEB )
