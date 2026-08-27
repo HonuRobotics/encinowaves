@@ -32,14 +32,14 @@
 // Los Angeles, Aug. 8, 2015, pp. 29-39.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_RANDOM_H
-#define ENCINOWAVES_RANDOM_H
+#ifndef EHUKAI_RANDOM_H
+#define EHUKAI_RANDOM_H
 
 #include "Foundation.h"
 #include "Basics.h"
 #include "Parameters.h"
 
-namespace EncinoWaves {
+namespace ehukai {
 
 //-*****************************************************************************
 // C++ 11 FOR SURE
@@ -164,6 +164,6 @@ public:
   T nextAmp() { return m_ampDist(this->m_engine); }
 };
 
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
 #endif

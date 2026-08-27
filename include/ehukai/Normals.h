@@ -32,14 +32,14 @@
 // Los Angeles, Aug. 8, 2015, pp. 29-39.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_NORMALS_H
-#define ENCINOWAVES_NORMALS_H
+#ifndef EHUKAI_NORMALS_H
+#define EHUKAI_NORMALS_H
 
 #include "Foundation.h"
 #include "SpectralSpatialField.h"
 #include "Propagation.h"
 
-namespace EncinoWaves {
+namespace ehukai {
 
 template <typename T>
 struct ComputeNormalsWithPinching {
@@ -120,6 +120,6 @@ void ComputeNormals(const Parameters<T>& i_params,
   tbb::parallel_for(tbb::blocked_range2d<int>{0, N + 1, 1, 0, N + 1, 512}, F);
 }
 
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
 #endif

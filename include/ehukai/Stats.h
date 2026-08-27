@@ -32,12 +32,12 @@
 // Los Angeles, Aug. 8, 2015, pp. 29-39.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_STATS_H
-#define ENCINOWAVES_STATS_H
+#ifndef EHUKAI_STATS_H
+#define EHUKAI_STATS_H
 
 #include "Foundation.h"
 
-namespace EncinoWaves {
+namespace ehukai {
 
 //-*****************************************************************************
 template <typename T>
@@ -188,6 +188,6 @@ struct Stats {
 typedef Stats<float> Statsf;
 typedef Stats<double> Statsd;
 
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
 #endif

@@ -8,14 +8,14 @@
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  *
- * Compile-only test: include every vendored EncinoWaves header so the
+ * Compile-only test: include every vendored ehukai header so the
  * compiler tells us about leftover FFTW / Alembic references after the
  * Foundation.h surgery. If this links it doesn't mean the library WORKS,
  * only that the headers + the Eigen-backed FftwWrapper agree on the type
  * surface.
  */
 
-#include "EncinoWaves/All.h"
+#include "ehukai/All.h"
 
 int main()
 {

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 @PACKAGE_INIT@
 include(CMakeFindDependencyMacro)
-find_dependency(Eigen3 @EW_EIGEN3_MIN@ NO_MODULE)
-find_dependency(TBB    @EW_TBB_MIN@)
-find_dependency(Imath  @EW_IMATH_MIN@)
+find_dependency(Eigen3 @EHUKAI_EIGEN3_MIN@ NO_MODULE)
+find_dependency(TBB    @EHUKAI_TBB_MIN@)
+find_dependency(Imath  @EHUKAI_IMATH_MIN@)
 include("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@Targets.cmake")

@@ -1,9 +1,14 @@
-## EncinoWaves
+## Ehukai
 
-> **This is a fork** maintained by [Honu Robotics](https://github.com/HonuRobotics).
-> It extracts EncinoWaves as a **standalone, headless C++ library** for embedding
-> in simulators and tools (e.g. VRX / Gazebo) and drops the original interactive
-> viewer. See [What this fork changes](#what-this-fork-changes).
+Ehukai (from the Hawaiian ʻehukai, sea spray) is a **standalone, headless C++
+library** for spectral ocean wave synthesis, maintained by
+[Honu Robotics](https://github.com/HonuRobotics) for embedding in simulators
+and tools (e.g. VRX / Gazebo).
+
+> Ehukai is heavily based on
+> [EncinoWaves](https://github.com/blackencino/EncinoWaves) by
+> Christopher Jon Horvath, with the updates described in
+> [What this library changes](#what-this-library-changes).
 
 The basic architecture of these Waves is based on the TweakWaves application
 written by Chris Horvath for Tweak Films in 2001.  This, in turn, was based
@@ -26,25 +31,34 @@ This library is written as a working implementation of the paper:
 > Los Angeles, Aug. 8, 2015, pp. 29-39.    
 
 
-## What this fork changes
+## What this library changes
 
-This fork keeps the spectral-synthesis library and removes everything that made
-the original a desktop application:
+Compared to the original EncinoWaves, Ehukai keeps the spectral-synthesis
+library and removes everything that made it a desktop application:
 
 - **Headless library only** — the interactive OpenGL viewer (`SimpleSimViewer`,
   `GeepGLFW`) and its OpenEXR / GLFW / Boost / Xrandr dependencies are gone.
 - **Eigen::FFT backend** — the FFTW backend is replaced by an `Eigen::FFT`
   (KissFFT) shim; no FFTW dependency.
 - **Modern math** — IlmBase is replaced by Imath.
-- **Standalone CMake** — exports an `EncinoWaves::EncinoWaves` target and a
-  `find_package(EncinoWaves)` config; dependencies are just Eigen3, TBB, Imath.
+- **Standalone CMake** — exports an `ehukai::ehukai` target and a
+  `find_package(ehukai)` config; dependencies are just Eigen3, TBB, Imath.
 - **Headless smoke tests** under `test/` exercise the spectra → propagation
   pipeline without a GPU.
 
+## Package installation (Ubuntu)
+
+Prebuilt packages for Ubuntu 24.04 and 26.04 are available from the
+[Honu Robotics APT repository](https://packages.honurobotics.com/). Follow
+the setup instructions there, then:
+
+```bash
+sudo apt install libehukai-dev
+```
 
 ## Building (Ubuntu)
 
-EncinoWaves is developed and tested on **Ubuntu** (24.04 LTS recommended).
+Ehukai is developed and tested on **Ubuntu** (24.04 LTS recommended).
 
 Install the build tools and dependencies:
 
@@ -73,12 +87,12 @@ at several grid sizes). It needs **Google Benchmark** and is off by default:
 
 ```sh
 sudo apt-get install -y libbenchmark-dev
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DENCINOWAVES_BUILD_BENCHMARKS=ON
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DEHUKAI_BUILD_BENCHMARKS=ON
 cmake --build build -j
 ./build/bench_FftwWrapper
 ```
 
-Install (optional — headers, shared library, and the `EncinoWaves` CMake config):
+Install (optional — headers, shared library, and the `ehukai` CMake config):
 
 ```sh
 sudo cmake --install build
@@ -116,17 +130,17 @@ Two environment notes the CI bakes in, needed for the **thread** job:
 Consume it from another CMake project:
 
 ```cmake
-find_package(EncinoWaves REQUIRED)
-target_link_libraries(your_target PRIVATE EncinoWaves::EncinoWaves)
+find_package(ehukai REQUIRED)
+target_link_libraries(your_target PRIVATE Ehukai::Ehukai)
 ```
 
 
 ## Style and static analysis
 
 The repo ships a `.clang-tidy` and a `CPPLINT.cfg`, so the checkers run with the
-project's policy out of the box. The gate covers the files this fork authors —
-the FFT shim (`include/EncinoWaves/FftwWrapper.h`) and the tests; the vendored
-upstream EncinoWaves headers are out of scope.
+project's policy out of the box. The gate covers the files this library authors —
+the FFT shim (`include/ehukai/FftwWrapper.h`) and the tests; the vendored
+upstream headers are out of scope.
 
 Install the tools:
 
@@ -155,7 +169,7 @@ warnings are ever reported.
 ### Pre-commit hook
 
 cpplint and cppcheck also run automatically via
-[pre-commit](https://pre-commit.com) on the files this fork authors. clang-tidy
+[pre-commit](https://pre-commit.com) on the files this library authors. clang-tidy
 is intentionally excluded — it is too slow for a hook and needs a compile
 database, so run it in CI instead. The cppcheck hook uses the system `cppcheck`
 from the install step above; cpplint is installed automatically by pre-commit
@@ -185,7 +199,7 @@ git commit --no-verify
 
 ### License
 
-Copyright &copy; 2015 Christopher Jon Horvath. Fork modifications &copy; Honu Robotics.
+Copyright &copy; 2015 Christopher Jon Horvath. Ehukai modifications &copy; Honu Robotics.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

@@ -2,7 +2,17 @@
 # SPDX-License-Identifier: Apache-2.0
 
 cmake_minimum_required(VERSION 3.18)
-project(EncinoWaves VERSION 0.0.1 LANGUAGES CXX)
+project(ehukai VERSION 0.0.2 LANGUAGES CXX)
+
+# A plain colcon build sets no build type, which compiles the hot paths
+# without optimization. Default to an optimized build with debug info;
+# an explicit -DCMAKE_BUILD_TYPE always wins.
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  message(STATUS "No CMAKE_BUILD_TYPE given; defaulting to RelWithDebInfo")
+  set(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "Build type" FORCE)
+  set_property(CACHE CMAKE_BUILD_TYPE PROPERTY
+    STRINGS Debug Release RelWithDebInfo MinSizeRel)
+endif()
 
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
@@ -46,14 +56,14 @@ if(SANITIZE)
 endif()
 
 # Single source of truth for dependency version floors; reused on the consumer
-# side via EncinoWavesConfig.cmake.in so the two never drift.
-set(EW_EIGEN3_MIN 3.4)
-set(EW_TBB_MIN    2021)
-set(EW_IMATH_MIN  3.1)
+# side via ehukaiConfig.cmake.in so the two never drift.
+set(EHUKAI_EIGEN3_MIN 3.4)
+set(EHUKAI_TBB_MIN    2021)
+set(EHUKAI_IMATH_MIN  3.1)
 
-find_package(Eigen3 ${EW_EIGEN3_MIN} REQUIRED NO_MODULE)  # header-only; Eigen::FFT
-find_package(TBB    ${EW_TBB_MIN}    REQUIRED)            # parallel sweeps
-find_package(Imath  ${EW_IMATH_MIN}  REQUIRED)            # BSD-3 math types
+find_package(Eigen3 ${EHUKAI_EIGEN3_MIN} REQUIRED NO_MODULE)  # header-only; Eigen::FFT
+find_package(TBB    ${EHUKAI_TBB_MIN}    REQUIRED)            # parallel sweeps
+find_package(Imath  ${EHUKAI_IMATH_MIN}  REQUIRED)            # BSD-3 math types
 
 add_library(${PROJECT_NAME} SHARED
   src/Foundation.cpp
@@ -74,7 +84,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC Eigen3::Eigen TBB::tbb Imath::Imath
 # ---- install: headers, target, and the CMake package config ----
 # COMPONENT tags split the install into the `runtime` (shared object) and `dev`
 # (headers, .so symlink, CMake config) sets that cmake/Packaging.cmake turns into
-# the libencinowaves0 / libencinowaves-dev .deb packages. A plain `cmake --install`
+# the libehukai0 / libehukai-dev .deb packages. A plain `cmake --install`
 # is unaffected; it still installs every component.
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} COMPONENT dev
   DIRECTORY_PERMISSIONS
@@ -111,20 +121,11 @@ install(FILES
   DESTINATION ${_cfgdir}
   COMPONENT dev)
 
-# Each binary package needs its own machine-readable copyright (lintian).
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cmake/deb/copyright
-  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/libencinowaves0
-  COMPONENT runtime)
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cmake/deb/copyright
-  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/libencinowaves-dev
-  COMPONENT dev)
-
 # The manifest belongs in the install tree so ROS tooling can identify the
 # package once it is installed under /opt/ros/<distro>
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/package.xml
   DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}
   COMPONENT dev)
-
 # ---- headless smoke tests (drivers exit non-zero on failure) ----
 if(BUILD_TESTING)
   foreach(t test_DirectionalSpreading test_FftwWrapper test_headers
@@ -136,18 +137,28 @@ if(BUILD_TESTING)
 endif()
 
 # ---- optional FFT microbenchmark (off by default; needs Google Benchmark) ----
-option(ENCINOWAVES_BUILD_BENCHMARKS
+option(EHUKAI_BUILD_BENCHMARKS
        "Build the FFT microbenchmark (requires Google Benchmark)" OFF)
-if(ENCINOWAVES_BUILD_BENCHMARKS)
+if(EHUKAI_BUILD_BENCHMARKS)
   find_package(benchmark REQUIRED)
   add_executable(bench_FftwWrapper benchmark/bench_FftwWrapper.cc)
   target_link_libraries(bench_FftwWrapper
     PRIVATE ${PROJECT_NAME} benchmark::benchmark)
 endif()
 
-# ---- Debian (.deb) packaging via CPack (top-level builds only) ----
-# Guarded so add_subdirectory() consumers don't inherit our CPack config.
-# (PROJECT_IS_TOP_LEVEL would be cleaner but needs CMake 3.21; floor here is 3.16.)
-if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+# ---- Debian (.deb) packaging via CPack ----
+# Opt-in, because the packaging installs files that only make sense inside the
+# .debs it builds: a copyright and changelog under share/doc/libehukai0 and
+# share/doc/libehukai-dev, and lintian overrides named after those packages.
+# Any other install carries them too, which is wrong everywhere else -- a ROS
+# buildfarm build of this package deposits all six under /opt/ros/<distro>,
+# naming Debian packages that do not exist there, and a conda build does the
+# same under $PREFIX. Only the pipeline that runs `cpack -G DEB` wants them, so
+# only that pipeline asks for them; see .github/workflows/release.yml.
+option(EHUKAI_ENABLE_DEB_PACKAGING
+       "Configure CPack to build the libehukai0 / libehukai-dev .deb packages" OFF)
+# Also guarded on being top level so add_subdirectory() consumers cannot inherit
+# our CPack config. (PROJECT_IS_TOP_LEVEL would be cleaner but needs CMake 3.21.)
+if(EHUKAI_ENABLE_DEB_PACKAGING AND CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
   include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Packaging.cmake)
 endif()

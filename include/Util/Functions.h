@@ -14,12 +14,12 @@
 // limitations under the License.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_UTIL_FUNCTIONS_H
-#define ENCINOWAVES_UTIL_FUNCTIONS_H
+#ifndef EHUKAI_UTIL_FUNCTIONS_H
+#define EHUKAI_UTIL_FUNCTIONS_H
 
 #include "Foundation.h"
 
-namespace EncinoWaves {
+namespace ehukai {
 namespace Util {
 
 //-*****************************************************************************
@@ -257,6 +257,6 @@ Imath::Box<Imath::Vec3<T>> BoxIntersection(
 }
 
 }  // namespace Util
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
 #endif

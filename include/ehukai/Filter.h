@@ -32,14 +32,14 @@
 // Los Angeles, Aug. 8, 2015, pp. 29-39.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_FILTER_H
-#define ENCINOWAVES_FILTER_H
+#ifndef EHUKAI_FILTER_H
+#define EHUKAI_FILTER_H
 
 #include "Foundation.h"
 #include "Parameters.h"
 #include "Basics.h"
 
-namespace EncinoWaves {
+namespace ehukai {
 
 //-*****************************************************************************
 // nullptr filter does nothing, always returns 1.0
@@ -104,6 +104,6 @@ public:
   }
 };
 
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
 #endif

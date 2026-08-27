@@ -14,11 +14,11 @@
  * limitations under the License.
  *
  * Eigen::FFT-backed implementation of the FftwWrapperT 2D complex-to-real
- * inverse-FFT interface used by EncinoWaves.
+ * inverse-FFT interface used by ehukai.
  */
 
-#ifndef ENCINOWAVES_FFTWWRAPPER_H
-#define ENCINOWAVES_FFTWWRAPPER_H
+#ifndef EHUKAI_FFTWWRAPPER_H
+#define EHUKAI_FFTWWRAPPER_H
 
 #include <cassert>
 #include <cmath>
@@ -56,7 +56,7 @@
 #define FFTW_PRESERVE_INPUT (1U << 4)
 #endif
 
-namespace EncinoWaves
+namespace ehukai
 {
 
 namespace detail
@@ -222,7 +222,7 @@ struct FftwWrapperT
     return p;
   }
 
-  // Guru variant. EncinoWaves uses square grids, so this forwards to the plain
+  // Guru variant. ehukai uses square grids, so this forwards to the plain
   // 2D plan; for a non-square input the upstream FFTW guru path halved the last
   // (width) dim, so the two would diverge.
   static plan_type plan_guru_dft_c2r(int i_width, int i_height,
@@ -277,6 +277,6 @@ struct FftwWrapperT
 template <typename T>
 inline void FftwInitThreadsT() {}
 
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
-#endif  // ENCINOWAVES_FFTWWRAPPER_H
+#endif  // EHUKAI_FFTWWRAPPER_H

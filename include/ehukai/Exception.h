@@ -14,19 +14,19 @@
 // limitations under the License.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_EXCEPTION_H
-#define ENCINOWAVES_EXCEPTION_H
+#ifndef EHUKAI_EXCEPTION_H
+#define EHUKAI_EXCEPTION_H
 
 #include <Util/Exception.h>
 
-namespace EncinoWaves {
+namespace ehukai {
 
 // The single Exception implementation and the EWAV_* macros live in
 // Util/Exception.h (historically this header carried a near-identical copy
 // of both, reconciled with #undef). The alias preserves the
-// EncinoWaves::Exception spelling for existing users.
+// ehukai::Exception spelling for existing users.
 using Util::Exception;
 
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
 #endif

@@ -1,9 +1,9 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: EncinoWaves
-Upstream-Contact: https://github.com/HonuRobotics/encinowaves/issues
-Source: https://github.com/HonuRobotics/encinowaves
+Upstream-Name: ehukai
+Upstream-Contact: https://github.com/HonuRobotics/ehukai/issues
+Source: https://github.com/HonuRobotics/ehukai
 Comment:
- EncinoWaves was originally written by Christopher Jon Horvath in 2015. Honu
+ ehukai was originally written by Christopher Jon Horvath in 2015. Honu
  Robotics extracted it into a standalone, headless C++ library and added the
  FFTW wrapper, build system, test suite, benchmarks and Debian packaging.
 
@@ -12,7 +12,7 @@ Copyright: 2015 Christopher Jon Horvath
 License: Apache-2.0
 
 Files:
- include/EncinoWaves/FftwWrapper.h
+ include/ehukai/FftwWrapper.h
  benchmark/*
  test/*
  cmake/*

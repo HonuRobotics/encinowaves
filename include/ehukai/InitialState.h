@@ -32,8 +32,8 @@
 // Los Angeles, Aug. 8, 2015, pp. 29-39.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_INITIALSTATE_H
-#define ENCINOWAVES_INITIALSTATE_H
+#ifndef EHUKAI_INITIALSTATE_H
+#define EHUKAI_INITIALSTATE_H
 
 #include "Foundation.h"
 #include "SpectralSpatialField.h"
@@ -45,7 +45,7 @@
 #include "DirectionalSpreading.h"
 #include "Random.h"
 
-namespace EncinoWaves {
+namespace ehukai {
 
 //-*****************************************************************************
 //! The one-shot spectral initial state of an ocean: the forward and
@@ -448,6 +448,6 @@ InitialState<T>::InitialState(const Parameters<T>& i_params)
   ConfigDispersion_CascadeExec<T>(i_params, *this);
 }
 
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
 #endif

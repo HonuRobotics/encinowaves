@@ -2,7 +2,7 @@
 # "triggers" file (activate-noawait ldconfig). The postinst/postrm are shipped
 # only to stop CPack from emitting its own direct ldconfig calls, so they are
 # intentionally empty.
-libencinowaves0: maintainer-script-empty
+libehukai0: maintainer-script-empty
 # Internal package for a private APT repo, not an archive upload: there is no
 # ITP/LP bug for the initial packaging to close.
-libencinowaves0: initial-upload-closes-no-bugs
+libehukai0: initial-upload-closes-no-bugs

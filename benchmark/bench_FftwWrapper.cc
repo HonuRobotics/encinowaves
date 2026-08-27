@@ -19,7 +19,7 @@
  * Scratch is allocated per call; the Eigen::FFT twiddle cache is per-thread.
  */
 
-#include "EncinoWaves/FftwWrapper.h"
+#include "ehukai/FftwWrapper.h"
 
 #include <algorithm>
 #include <cmath>
@@ -34,7 +34,7 @@ namespace
   template <typename T>
   void BM_InverseFFT2d(benchmark::State &state)
   {
-    using FFT = EncinoWaves::FftwWrapperT<T>;
+    using FFT = ehukai::FftwWrapperT<T>;
     using Complex = std::complex<T>;
 
     const int n = static_cast<int>(state.range(0));

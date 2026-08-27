@@ -29,9 +29,10 @@ jobs:
       - name: Build and package
         run: |
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr \
-                -DBUILD_TESTING=OFF -DEW_DEB_DISTRO_SUFFIX="${{ matrix.suffix }}" \
-                -DEW_DEB_DISTRO_CODENAME="${{ matrix.codename }}"
-          cmake --build build --target EncinoWaves -j"$(nproc)"
+                -DBUILD_TESTING=OFF -DEHUKAI_ENABLE_DEB_PACKAGING=ON \
+                -DEHUKAI_DEB_DISTRO_SUFFIX="${{ matrix.suffix }}" \
+                -DEHUKAI_DEB_DISTRO_CODENAME="${{ matrix.codename }}"
+          cmake --build build --target ehukai -j"$(nproc)"
           ( cd build && cpack -G DEB )
       - name: Lintian (soft)
         run: lintian build/*.deb || true
@@ -43,7 +44,7 @@ jobs:
     needs: build-deb
     # Skip on forks: HONU_APT_TOKEN is absent there and only this repository
     # should publish releases / notify the APT repository.
-    if: github.repository == 'HonuRobotics/encinowaves'
+    if: github.repository == 'HonuRobotics/ehukai'
     runs-on: ubuntu-latest
     permissions:
       contents: write   # gh release create
@@ -72,4 +73,4 @@ jobs:
             -H "Authorization: Bearer $HONU_APT_TOKEN" \
             -H "Accept: application/vnd.github+json" \
             https://api.github.com/repos/HonuRobotics/apt-repository/dispatches \
-            -d "{\"event_type\":\"publish-deb\",\"client_payload\":{\"repo\":\"encinowaves\",\"tag\":\"$GITHUB_REF_NAME\"}}"
+            -d "{\"event_type\":\"publish-deb\",\"client_payload\":{\"repo\":\"ehukai\",\"tag\":\"$GITHUB_REF_NAME\"}}"

@@ -32,12 +32,12 @@
 // Los Angeles, Aug. 8, 2015, pp. 29-39.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_BASICS_H
-#define ENCINOWAVES_BASICS_H
+#ifndef EHUKAI_BASICS_H
+#define EHUKAI_BASICS_H
 
 #include "Foundation.h"
 
-namespace EncinoWaves {
+namespace ehukai {
 
 template <typename T>
 constexpr T PI = T(3.1415926535897932385);
@@ -262,6 +262,6 @@ void SpectralIterate(const STATE& i_state, T i_domain, int i_N) {
   SpectralIterate<STATE, T, STATE>(i_state, i_domain, i_N);
 }
 
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
 #endif

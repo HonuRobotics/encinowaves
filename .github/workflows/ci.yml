@@ -1,7 +1,7 @@
 name: CI
 
 # AddressSanitizer (ASan + UBSan + LeakSanitizer) and ThreadSanitizer builds of
-# EncinoWaves, exercised by the headless smoke tests on Ubuntu Noble (24.04) and
+# ehukai, exercised by the headless smoke tests on Ubuntu Noble (24.04) and
 # Resolute (26.04). Reproduce a job locally with, e.g.:
 #
 #   cmake -S . -B build-asan -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSANITIZE=address
@@ -16,7 +16,7 @@ name: CI
 
 on:
   push:
-    branches: [ master, "jrivero/**" ]
+    branches: [ main, "jrivero/**" ]
   pull_request:
   workflow_dispatch:
 

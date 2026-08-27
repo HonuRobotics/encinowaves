@@ -12,5 +12,5 @@
 # WarningsAsErrors promotes every enabled-check warning to an error so a CI run
 # of clang-tidy actually fails on a finding rather than just reporting it.
 Checks: '-*,bugprone-*,performance-*,portability-*,misc-*,clang-analyzer-*,cert-*,modernize-*,-modernize-use-trailing-return-type,-modernize-use-nodiscard,-misc-include-cleaner,-bugprone-easily-swappable-parameters'
-HeaderFilterRegex: 'EncinoWaves/FftwWrapper\.h$'
+HeaderFilterRegex: 'ehukai/FftwWrapper\.h$'
 WarningsAsErrors: '*'

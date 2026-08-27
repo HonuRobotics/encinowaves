@@ -32,13 +32,13 @@
 // Los Angeles, Aug. 8, 2015, pp. 29-39.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_SPECTRALSPATIALFIELD_H
-#define ENCINOWAVES_SPECTRALSPATIALFIELD_H
+#ifndef EHUKAI_SPECTRALSPATIALFIELD_H
+#define EHUKAI_SPECTRALSPATIALFIELD_H
 
 #include "Foundation.h"
 #include "FftwWrapper.h"
 
-namespace EncinoWaves {
+namespace ehukai {
 
 //-*****************************************************************************
 template <typename T>
@@ -394,6 +394,6 @@ typedef ComplexSpectralField2D<double> CSpectralField2Dd;
 typedef SpectralToSpatial2D<float> SpectralToSpatial2Df;
 typedef SpectralToSpatial2D<double> SpectralToSpatial2Dd;
 
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
 #endif

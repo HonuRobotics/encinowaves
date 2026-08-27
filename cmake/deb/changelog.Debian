@@ -1,4 +1,13 @@
-encinowaves (0.0.1-1) noble; urgency=medium
+ehukai (0.0.2-1) noble; urgency=medium
+
+  * First release under the ehukai name: renamed repository, Debian
+    packages (libehukai0, libehukai-dev), CMake package and C++ API.
+  * Add a colcon manifest for workspace peer builds.
+  * Default to an optimized build type when none is given.
+
+ -- Carlos Aguero <caguero@honurobotics.com>  Wed, 12 Aug 2026 18:15:16 +0200
+
+ehukai (0.0.1-1) noble; urgency=medium
 
   * Initial Debian packaging via CPack (component-based library/dev split).
 

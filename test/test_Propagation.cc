@@ -8,7 +8,7 @@
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  *
- * End-to-end smoke test for the vendored EncinoWaves library with the
+ * End-to-end smoke test for the vendored ehukai library with the
  * Eigen-backed FFT shim. Runs the canonical "make some waves" pipeline:
  *
  *   Parameters     <-- spectrum + dispersion + directional spread + ...
@@ -29,7 +29,7 @@
  * Tessendorf Jacobian-derived foam indicator).
  */
 
-#include "EncinoWaves/All.h"
+#include "ehukai/All.h"
 
 #include <algorithm>
 #include <cmath>
@@ -92,12 +92,12 @@ namespace
 
 int main()  // NOLINT(bugprone-exception-escape): a throwing ctor is a test fail
 {
-  using EncinoWaves::InitialStatef;
-  using EncinoWaves::Parameters;
-  using EncinoWaves::Propagationf;
-  using EncinoWaves::PropagatedStatef;
+  using ehukai::InitialStatef;
+  using ehukai::Parameters;
+  using ehukai::Propagationf;
+  using ehukai::PropagatedStatef;
 
-  std::cout << "EncinoWaves end-to-end smoke test\n"
+  std::cout << "ehukai end-to-end smoke test\n"
                "(vendored library + Eigen-backed FFT shim)\n\n";
 
   // Use Parameters defaults except for resolution + wind. Defaults already

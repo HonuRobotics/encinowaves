@@ -32,8 +32,8 @@
 // Los Angeles, Aug. 8, 2015, pp. 29-39.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_PROPAGATION_H
-#define ENCINOWAVES_PROPAGATION_H
+#ifndef EHUKAI_PROPAGATION_H
+#define EHUKAI_PROPAGATION_H
 
 #include "Foundation.h"
 #include "FftwWrapper.h"
@@ -43,7 +43,7 @@
 #include "InitialState.h"
 #include "Stats.h"
 
-namespace EncinoWaves {
+namespace ehukai {
 
 //-*****************************************************************************
 //! Per-frame spatial output grids: the surface Height, the lateral (chop)
@@ -573,6 +573,6 @@ void Propagation<T>::propagate(const Parameters<T> &i_params,
   }
 }
 
-} // namespace EncinoWaves
+} // namespace ehukai
 
 #endif

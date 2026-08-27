@@ -32,14 +32,14 @@
 // Los Angeles, Aug. 8, 2015, pp. 29-39.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_DISPERSION_H
-#define ENCINOWAVES_DISPERSION_H
+#ifndef EHUKAI_DISPERSION_H
+#define EHUKAI_DISPERSION_H
 
 #include "Foundation.h"
 #include "Basics.h"
 #include "Parameters.h"
 
-namespace EncinoWaves {
+namespace ehukai {
 
 //-*****************************************************************************
 //-*****************************************************************************
@@ -168,6 +168,6 @@ public:
   }
 };
 
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
 #endif

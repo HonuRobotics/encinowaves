@@ -15,17 +15,17 @@ repos:
         # needed on PATH. cpplint reads CPPLINT.cfg from the tree.
         language: python
         additional_dependencies: ['cpplint==2.0.2']
-        files: '^(include/EncinoWaves/FftwWrapper\.h|test/.*\.cc)$'
+        files: '^(include/ehukai/FftwWrapper\.h|test/.*\.cc)$'
 
       - id: cppcheck
         name: cppcheck
         # The .h parses as C++ only with --language=c++; --error-exitcode makes
         # findings fail the commit (cppcheck otherwise exits 0). No -I include:
         # FftwWrapper.h pulls only system/Eigen/TBB headers (so it is still fully
-        # checked), while the tests' EncinoWaves includes stay unresolved
+        # checked), while the tests' ehukai includes stay unresolved
         # (suppressed missingInclude) — so cppcheck checks the fork's own sources
         # without descending into the vendored headers, and no header list is
         # hardcoded.
         entry: cppcheck --enable=warning,style,performance,portability --std=c++17 --language=c++ --suppress=missingIncludeSystem --suppress=missingInclude --error-exitcode=2
         language: system
-        files: '^(include/EncinoWaves/FftwWrapper\.h|test/.*\.cc)$'
+        files: '^(include/ehukai/FftwWrapper\.h|test/.*\.cc)$'

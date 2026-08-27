@@ -32,8 +32,8 @@
 // Los Angeles, Aug. 8, 2015, pp. 29-39.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_FOUNDATION_H
-#define ENCINOWAVES_FOUNDATION_H
+#ifndef EHUKAI_FOUNDATION_H
+#define EHUKAI_FOUNDATION_H
 
 #include <Util/All.h>
 
@@ -70,11 +70,11 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-namespace EncinoWaves {
+namespace ehukai {
 
-// Import only the Util helpers EncinoWaves code actually uses, instead of
+// Import only the Util helpers ehukai code actually uses, instead of
 // the former `using namespace Util;`, which re-exported every Util name
-// into EncinoWaves for all downstream consumers.
+// into ehukai for all downstream consumers.
 using Util::cube;
 using Util::mix;
 using Util::smoothstep;
@@ -121,6 +121,6 @@ constexpr int PowerOfTwo(int i_power) {
     return (0x1 << i_power);
   }
 }
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
 #endif

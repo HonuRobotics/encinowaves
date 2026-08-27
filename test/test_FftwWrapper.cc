@@ -41,7 +41,7 @@
  * The float and double specializations are exercised independently.
  */
 
-#include "EncinoWaves/FftwWrapper.h"
+#include "ehukai/FftwWrapper.h"
 
 #include <algorithm>
 #include <atomic>
@@ -110,7 +110,7 @@ template <typename T>
 int RunForType(const char *typeName)
 {
   std::cout << "== FftwWrapperT<" << typeName << "> ==\n";
-  using FFT = EncinoWaves::FftwWrapperT<T>;
+  using FFT = ehukai::FftwWrapperT<T>;
   using Complex = std::complex<T>;
 
   constexpr int Slow = 8;   // = i_width in FFTW guru naming (outer dim)
@@ -296,7 +296,7 @@ int RunForType(const char *typeName)
   // These are no-ops or trivial wrappers kept for FFTW call-site
   // compatibility; exercise them so the whole shim is covered.
   Check("threading / alloc / null-plan no-op surface", failures, [&]() {
-    EncinoWaves::FftwInitThreadsT<T>();  // no-op global hook
+    ehukai::FftwInitThreadsT<T>();  // no-op global hook
     if (FFT::init_threads() != 1) return false;
     FFT::plan_with_nthreads(2);  // bound TBB concurrency...
     FFT::plan_with_nthreads(0);  // ...then restore the default

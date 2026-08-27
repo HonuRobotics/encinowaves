@@ -14,18 +14,18 @@
 // limitations under the License.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_UTIL_EXCEPTION_H
-#define ENCINOWAVES_UTIL_EXCEPTION_H
+#ifndef EHUKAI_UTIL_EXCEPTION_H
+#define EHUKAI_UTIL_EXCEPTION_H
 
 #include "Foundation.h"
 
 #include <stdexcept>
 
-namespace EncinoWaves {
+namespace ehukai {
 namespace Util {
 
 //-*****************************************************************************
-//! Base class for all exceptions in the EncinoWaves libraries. It is most
+//! Base class for all exceptions in the ehukai libraries. It is most
 //! commonly thrown using the EWAV_THROW and EWAV_ASSERT macros below.
 class Exception : public std::runtime_error {
 public:
@@ -51,7 +51,7 @@ public:
     sstr << TEXT;                                              \
     sstr << "\nFile: " << __FILE__ << std::endl                \
          << "Line: " << __LINE__ << std::endl;                 \
-    EncinoWaves::Util::EwavDebugAssertFail(sstr.str().c_str()); \
+    ehukai::Util::EwavDebugAssertFail(sstr.str().c_str()); \
   } while (0)
 
 //-*****************************************************************************
@@ -63,7 +63,7 @@ public:
     sstr << TEXT;                                 \
     sstr << "\nFile: " << __FILE__ << std::endl   \
          << "Line: " << __LINE__ << std::endl;    \
-    EncinoWaves::Util::Exception exc(sstr.str()); \
+    ehukai::Util::Exception exc(sstr.str()); \
     throw(exc);                                   \
   } while (0)
 
@@ -98,6 +98,6 @@ public:
 #endif
 
 }  // namespace Util
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
 #endif

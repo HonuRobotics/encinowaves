@@ -1,0 +1,63 @@
+# rattler-build recipe for the ehukai conda package.
+#
+# Local build (from the repository root):
+#   rattler-build build --recipe recipe/recipe.yaml
+#
+# The source entry points at the repository itself so the recipe always builds
+# the checked-out tree; a release recipe for a channel or conda-forge would
+# replace it with a versioned tarball URL plus its sha256.
+context:
+  version: "0.0.2"
+
+package:
+  name: ehukai
+  version: ${{ version }}
+
+source:
+  path: ..
+
+build:
+  number: 0
+  script:
+    - cmake -S . -B build-conda -G Ninja
+      -DCMAKE_BUILD_TYPE=Release
+      -DCMAKE_INSTALL_PREFIX=$PREFIX
+      -DBUILD_TESTING=OFF
+    - cmake --build build-conda --parallel
+    - cmake --install build-conda
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - cmake
+    - ninja
+  host:
+    - eigen >=3.4
+    - tbb-devel >=2021
+    - imath >=3.1
+  run_exports:
+    # Consumers built against this package need a compatible SONAME at run
+    # time; pin to the same major version.
+    - ${{ pin_subpackage('ehukai', upper_bound='x') }}
+
+tests:
+  - package_contents:
+      include:
+        - ehukai/All.h
+      lib:
+        - ehukai
+      files:
+        - lib/cmake/ehukai/ehukaiConfig.cmake
+
+about:
+  homepage: https://github.com/HonuRobotics/ehukai
+  repository: https://github.com/HonuRobotics/ehukai
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Headless C++ library for FFT ocean wave synthesis from empirical directional spectra
+  description: |
+    Ehukai synthesizes ocean wave fields with the inverse FFT of
+    empirically modelled directional spectra (TMA, JONSWAP, Pierson
+    Moskowitz with directional spreading and dispersion), based on
+    Christopher J. Horvath's EncinoWaves (DigiPro 2015), reduced to
+    a standalone, headless simulation core.

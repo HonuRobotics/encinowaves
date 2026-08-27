@@ -32,14 +32,14 @@
 // Los Angeles, Aug. 8, 2015, pp. 29-39.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_DIRECTIONALSPREADING_H
-#define ENCINOWAVES_DIRECTIONALSPREADING_H
+#ifndef EHUKAI_DIRECTIONALSPREADING_H
+#define EHUKAI_DIRECTIONALSPREADING_H
 
 #include "Foundation.h"
 #include "Basics.h"
 #include "Parameters.h"
 
-namespace EncinoWaves {
+namespace ehukai {
 
 //------------------------------------------------------------------------------
 template <typename T, typename FUNC>
@@ -329,6 +329,6 @@ protected:
   T m_swell;
 };
 
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
 #endif

@@ -27,7 +27,7 @@
  * implementations.
  */
 
-#include "EncinoWaves/All.h"
+#include "ehukai/All.h"
 
 #include <cmath>
 #include <cstring>
@@ -36,7 +36,7 @@
 
 int main()
 {
-  using namespace EncinoWaves;
+  using namespace ehukai;
 
   std::cout << "Random machinery determinism tests\n\n";
 

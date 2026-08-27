@@ -32,13 +32,13 @@
 // Los Angeles, Aug. 8, 2015, pp. 29-39.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_MIPMAP_H
-#define ENCINOWAVES_MIPMAP_H
+#ifndef EHUKAI_MIPMAP_H
+#define EHUKAI_MIPMAP_H
 
 #include "Foundation.h"
 #include "Propagation.h"
 
-namespace EncinoWaves {
+namespace ehukai {
 
 //-*****************************************************************************
 // This could not be more bloated if my life depended on it. Blech.
@@ -207,6 +207,6 @@ void DownsampleState(const PropagatedState<T>& i_src,
   Downsample<T>(i_src.MinE, o_dst.MinE);
 }
 
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
 #endif

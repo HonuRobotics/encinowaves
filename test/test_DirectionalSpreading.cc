@@ -31,8 +31,8 @@
  * exponents is a separate known issue and not what this test targets.
  */
 
-#include "EncinoWaves/DirectionalSpreading.h"
-#include "EncinoWaves/Parameters.h"
+#include "ehukai/DirectionalSpreading.h"
+#include "ehukai/Parameters.h"
 
 #include <cmath>
 #include <iostream>
@@ -81,7 +81,7 @@ int main()
     const double expected =
         2.0 * kPi * 3.5 * (g / U) * std::pow(chi, -0.33);
     const double actual =
-        EncinoWaves::modalAngularFrequencyJONSWAP(g, U, fetchKm);
+        ehukai::modalAngularFrequencyJONSWAP(g, U, fetchKm);
     demand(std::abs(actual - expected) < 1e-9 * expected,
            "modalAngularFrequencyJONSWAP treats fetch as km (SI internally)");
     // Sanity: ~0.6 rad/s is a ~10 s peak period, a realistic sea state for
@@ -112,7 +112,7 @@ int main()
 
     for (double swellAmount : swells)
     {
-      EncinoWaves::Parameters<double> params;
+      ehukai::Parameters<double> params;
       params.directionalSpreading.swell = swellAmount;
       const auto D = makeSpreading(params);
 
@@ -165,8 +165,8 @@ int main()
 
   testSpreading(
       "DonelanBanner",
-      [](const EncinoWaves::Parameters<double> &p) {
-        return EncinoWaves::DonelanBannerDirectionalSpreading<double>(p);
+      [](const ehukai::Parameters<double> &p) {
+        return ehukai::DonelanBannerDirectionalSpreading<double>(p);
       },
       // Full-circle normalization only holds on the negative-swell branch.
       [](double swell) { return swell < 0.0; },
@@ -174,24 +174,24 @@ int main()
 
   testSpreading(
       "Mitsuyasu",
-      [](const EncinoWaves::Parameters<double> &p) {
-        return EncinoWaves::MitsuyasuDirectionalSpreading<double>(p);
+      [](const ehukai::Parameters<double> &p) {
+        return ehukai::MitsuyasuDirectionalSpreading<double>(p);
       },
       [](double) { return true; },
       /*hasIsotropicBlend=*/true);
 
   testSpreading(
       "Hasselmann",
-      [](const EncinoWaves::Parameters<double> &p) {
-        return EncinoWaves::HasselmannDirectionalSpreading<double>(p);
+      [](const ehukai::Parameters<double> &p) {
+        return ehukai::HasselmannDirectionalSpreading<double>(p);
       },
       [](double) { return true; },
       /*hasIsotropicBlend=*/true);
 
   testSpreading(
       "PosCosSquared",
-      [](const EncinoWaves::Parameters<double> &p) {
-        return EncinoWaves::PosCosSquaredDirectionalSpreading<double>(p);
+      [](const ehukai::Parameters<double> &p) {
+        return ehukai::PosCosSquaredDirectionalSpreading<double>(p);
       },
       // No isotropic blend branch; the kernel is zero outside
       // [-pi/2, pi/2], so the full-circle integral is ~1 for any swell.

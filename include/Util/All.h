@@ -14,8 +14,8 @@
 // limitations under the License.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_UTIL_ALL_H
-#define ENCINOWAVES_UTIL_ALL_H
+#ifndef EHUKAI_UTIL_ALL_H
+#define EHUKAI_UTIL_ALL_H
 
 #include "Foundation.h"
 

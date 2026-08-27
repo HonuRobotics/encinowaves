@@ -32,13 +32,13 @@
 // Los Angeles, Aug. 8, 2015, pp. 29-39.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_PARAMETERS_H
-#define ENCINOWAVES_PARAMETERS_H
+#ifndef EHUKAI_PARAMETERS_H
+#define EHUKAI_PARAMETERS_H
 
 #include "Foundation.h"
 #include "Basics.h"
 
-namespace EncinoWaves {
+namespace ehukai {
 
 //! Dispersion relationship linking wave number to angular frequency.
 //! Capillary generalizes finite-depth, which generalizes deep water, so
@@ -203,6 +203,6 @@ struct Parameters {
 typedef Parameters<float> Parametersf;
 typedef Parameters<double> Parametersd;
 
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
 #endif

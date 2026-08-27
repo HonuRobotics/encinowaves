@@ -1,4 +1,4 @@
-# ThreadSanitizer suppressions for EncinoWaves.
+# ThreadSanitizer suppressions for ehukai.
 #
 # oneTBB's work-stealing scheduler (partitioner, blocked_range, start_for,
 # small-object pool) coordinates worker threads with atomics and fences that
@@ -6,9 +6,9 @@
 # Ubuntu's libtbb-dev is built WITHOUT -fsanitize=thread instrumentation. TSan
 # therefore reports benign data races deep inside the TBB runtime whenever a
 # parallel_for splits work across threads (e.g. test_Propagation's spectral
-# sweeps). These are false positives, not bugs in EncinoWaves.
+# sweeps). These are false positives, not bugs in ehukai.
 #
-# Real EncinoWaves concurrency findings are NOT silenced by this file: they
+# Real ehukai concurrency findings are NOT silenced by this file: they
 # fail their own functional assertions in test_FftwWrapper (the concurrent
 # shared-plan execute test) independently of TSan's race reports.
 #
@@ -21,6 +21,6 @@ race:tbb::detail::
 
 # When the system libtbb ships without symbols, those same runtime frames
 # resolve to <null> instead of tbb::detail::, so the pattern above misses them.
-# Match the uninstrumented shared library directly. Real EncinoWaves races still
+# Match the uninstrumented shared library directly. Real ehukai races still
 # fail their own functional assertions in test_FftwWrapper, independent of TSan.
 called_from_lib:libtbb.so.12

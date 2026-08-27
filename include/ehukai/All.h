@@ -32,8 +32,8 @@
 // Los Angeles, Aug. 8, 2015, pp. 29-39.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_ALL_H
-#define ENCINOWAVES_ALL_H
+#ifndef EHUKAI_ALL_H
+#define EHUKAI_ALL_H
 
 #include "Basics.h"
 #include "DirectionalSpreading.h"

@@ -16,7 +16,7 @@
 
 #include "Util/Exception.h"
 
-namespace EncinoWaves {
+namespace ehukai {
 namespace Util {
 
 //-*****************************************************************************
@@ -26,4 +26,4 @@ void EwavDebugAssertFail(const char* msg) noexcept {
 }
 
 }  // namespace Util
-}  // namespace EncinoWaves
+}  // namespace ehukai

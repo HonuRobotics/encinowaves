@@ -32,15 +32,15 @@
 // Los Angeles, Aug. 8, 2015, pp. 29-39.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_SPECTRA_H
-#define ENCINOWAVES_SPECTRA_H
+#ifndef EHUKAI_SPECTRA_H
+#define EHUKAI_SPECTRA_H
 
 #include "Foundation.h"
 #include "Parameters.h"
 #include "Basics.h"
 #include "Random.h"
 
-namespace EncinoWaves {
+namespace ehukai {
 
 //-*****************************************************************************
 // The spectra all have an equation of this form in them.
@@ -179,6 +179,6 @@ public:
   }
 };
 
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
 #endif

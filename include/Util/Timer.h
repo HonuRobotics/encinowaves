@@ -14,14 +14,14 @@
 // limitations under the License.
 //-*****************************************************************************
 
-#ifndef ENCINOWAVES_UTIL_TIMER_H
-#define ENCINOWAVES_UTIL_TIMER_H
+#ifndef EHUKAI_UTIL_TIMER_H
+#define EHUKAI_UTIL_TIMER_H
 
 #include "Foundation.h"
 
 #include <chrono>
 
-namespace EncinoWaves {
+namespace ehukai {
 namespace Util {
 
 //-*****************************************************************************
@@ -58,6 +58,6 @@ private:
 };
 
 }  // namespace Util
-}  // namespace EncinoWaves
+}  // namespace ehukai
 
 #endif

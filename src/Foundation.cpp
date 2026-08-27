@@ -32,11 +32,11 @@
 // Los Angeles, Aug. 8, 2015, pp. 29-39.
 //-*****************************************************************************
 
-#include "EncinoWaves/Foundation.h"
+#include "ehukai/Foundation.h"
 
-namespace EncinoWaves {
+namespace ehukai {
 
 //-*****************************************************************************
 std::mutex g_printMutex;
 
-} // namespace EncinoWaves
+} // namespace ehukai
