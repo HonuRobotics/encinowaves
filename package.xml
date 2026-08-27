@@ -20,18 +20,8 @@
 
   <buildtool_depend>cmake</buildtool_depend>
 
-  <!-- These are rosdep KEYS, not apt package names: `eigen` resolves to
-       libeigen3-dev and `tbb` to libtbb-dev. Version floors live in
-       CMakeLists.txt (EHUKAI_EIGEN3_MIN, EHUKAI_TBB_MIN, EHUKAI_IMATH_MIN);
-       rosdep keys carry no version, so the two are matched by hand.
-
-       Imath has NO rosdep key — there is no rule for imath, ilmbase or
-       openexr in any rosdistro list — so it cannot be declared here and
-       `rosdep install` will not install it. Install libimath-dev yourself
-       (the README's build instructions do), or use a container that carries
-       it. Declaring the apt name directly fails with "Cannot locate rosdep
-       definition". -->
   <depend>eigen</depend>
+  <depend>libimath-dev</depend>
   <depend>tbb</depend>
 
   <export>
