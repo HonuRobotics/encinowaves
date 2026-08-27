@@ -121,6 +121,11 @@ install(FILES
   DESTINATION ${_cfgdir}
   COMPONENT dev)
 
+# The manifest belongs in the install tree so ROS tooling can identify the
+# package once it is installed under /opt/ros/<distro>
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/package.xml
+  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}
+  COMPONENT dev)
 # ---- headless smoke tests (drivers exit non-zero on failure) ----
 if(BUILD_TESTING)
   foreach(t test_DirectionalSpreading test_FftwWrapper test_headers
