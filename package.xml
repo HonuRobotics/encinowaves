@@ -15,8 +15,10 @@
     a standalone cmake build are unaffected.
   </description>
   <maintainer email="info@honurobotics.com">Honu Robotics</maintainer>
-  <license>Apache-2.0</license>
+  <author>Christopher Jon Horvath</author>
+  <license file="LICENSE">Apache-2.0</license>
   <url type="repository">https://github.com/HonuRobotics/ehukai</url>
+  <url type="bugtracker">https://github.com/HonuRobotics/ehukai/issues</url>
 
   <buildtool_depend>cmake</buildtool_depend>
 

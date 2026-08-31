@@ -131,7 +131,7 @@ Consume it from another CMake project:
 
 ```cmake
 find_package(ehukai REQUIRED)
-target_link_libraries(your_target PRIVATE Ehukai::Ehukai)
+target_link_libraries(your_target PRIVATE ehukai::ehukai)
 ```
 
 

@@ -6,13 +6,6 @@ name: CI
 #
 #   cmake -S . -B build-asan -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSANITIZE=address
 #   cmake --build build-asan -j && ctest --test-dir build-asan --output-on-failure
-#
-# KNOWN-RED: the suite intentionally fails on this branch. test_FftwWrapper
-# "Test 13" drives one FFT plan concurrently from several threads and documents a
-# real data race on the cached per-plan scratch (FftwWrapper.h, Plan::intermediate):
-# ASan reports the leaked scratch, TSan reports the race, and the test's own
-# numerical check reports the corrupted cells. The race is kept visible here until
-# it is fixed; every other test passes. See README "Continuous integration".
 
 on:
   push:
