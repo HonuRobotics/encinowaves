@@ -2,8 +2,8 @@
 Changelog for package ehukai
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.3 (2026-08-31)
+------------------
 * Declare the Imath dependency as the ``libimath-dev`` rosdep key.
 * Make the Debian packaging opt-in via ``EHUKAI_ENABLE_DEB_PACKAGING`` so its
   copyright, changelog and lintian overrides stop appearing in every install.
